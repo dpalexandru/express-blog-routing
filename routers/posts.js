@@ -8,9 +8,22 @@ router.get("/", (req, res) => {
     res.json(postsObject)
 });
 
-//definisco la route Show principale con id
+//definisco la route Show principale con id e restituisco l'articolo con id ricevuto
 router.get("/:id", (req, res) => {
-    res.send(`Dettagli postn n: ${req.params.id}`)
+    const id = parseInt(req.params.id);
+    const risp = [];
+
+    postsObject.forEach(elem => {
+        if (elem.id == id) {
+            risp.push(elem);
+        }
+    });
+    if (risp.length != 0) {
+        res.json(risp);
+    } else {
+        res.send('nessun articolo trovato')
+    }
+
 });
 
 //definisco la route per Creare un post
