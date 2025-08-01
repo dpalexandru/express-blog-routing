@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const postsObject = require('../content/posts.js')
+    //console.log(postsObject)
 
 //definisco la route principale Index
 router.get("/", (req, res) => {
-    res.send("Lista dei miei post")
+    res.json(postsObject)
 });
 
-//definisco la route principale con id
+//definisco la route Show principale con id
 router.get("/:id", (req, res) => {
     res.send(`Dettagli postn n: ${req.params.id}`)
 });
